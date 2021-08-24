@@ -1,0 +1,56 @@
+如果一个对象的所有键名都是正整数或0，并且有length属性，那么这个对象就很想数组，语法上称为“类似数组的对象”（array-like object）
+
+var obj = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  length: 3
+};
+
+obj[0] // 'a'
+obj[1] // 'b'
+obj.length // 3
+obj.push('d') // TypeError: obj.push is not a function
+上面的obj就是类似数组的对象，但却不是数组，所以不可以用数组独有的方法
+
+// arguments对象
+function args() { return arguments }
+var arrayLike = args('a', 'b');
+
+arrayLike[0] // 'a'
+arrayLike.length // 2
+arrayLike instanceof Array // false
+
+// DOM元素集
+var elts = document.getElementsByTagName('h3');
+elts.length // 3
+elts instanceof Array // false
+
+// 字符串
+'abc'[1] // 'b'
+'abc'.length // 3
+'abc' instanceof Array // false
+
+上面这三种就是典型的类似数组的对象
+如果要用数组方法的话有下面两种方法
+1.
+var arr = Array.prototype.slice.call('abc');
+arr.forEach(function (chr) {
+  console.log(chr);
+});
+// a
+// b
+// c
+
+用prototype.slice.call（）把类似数组的对象直接转为数组，然后就可以使用数组的方法
+
+2.
+function print(value, index) {
+  console.log(index + ' : ' + value);
+}
+
+Array.prototype.forEach.call(arrayLike, print);
+
+通过call（）把数组的方法放到对象上面
+
+但是这种方法较慢，而且只能用forEach,所以建议使用第一种方法

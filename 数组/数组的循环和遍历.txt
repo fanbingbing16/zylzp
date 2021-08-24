@@ -1,0 +1,42 @@
+1.for…in循环
+var a = [1, 2, 3];
+
+for (var i in a) {
+  console.log(a[i]);
+}
+这个循环会把数组的非数字键遍历出来，所以一般不推荐使用
+
+这个遍历方法会把不合法的数字键过滤，列如比2^32-1大的数字，undefine和空位都不会遍历出来
+2.for循环
+var a = [1, 2, 3];
+
+// for循环
+for(var i = 0; i < a.length; i++) {
+  console.log(a[i]);
+}
+undefine可以遍历出来，空位遍历不出来
+3.while循环
+
+var i = 0;
+while (i < a.length) {
+  console.log(a[i]);
+  i++;
+}
+undefine可以遍历出来，空位遍历不出来
+逆向遍历：
+var l = a.length;
+while (l--) {
+  console.log(a[l]);
+}
+
+4.forEach方法
+
+var colors = ['red', 'green', 'blue'];
+colors.forEach(function (color) {
+  console.log(color);
+});
+// red
+// green
+// blue
+
+undefine和空位都不会遍历出来

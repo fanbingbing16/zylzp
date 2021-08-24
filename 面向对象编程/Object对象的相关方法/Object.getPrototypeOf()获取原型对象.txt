@@ -1,0 +1,15 @@
+Object.getPrototypeOf方法返回参数对象的原型。这是获取原型对象的标准方法。
+
+var F = function () {};
+var f = new F();
+Object.getPrototypeOf(f) === F.prototype // true
+
+// 空对象的原型是 Object.prototype
+Object.getPrototypeOf({}) === Object.prototype // true
+
+// Object.prototype 的原型是 null
+Object.getPrototypeOf(Object.prototype) === null // true
+
+// 函数的原型是 Function.prototype
+function f() {}
+Object.getPrototypeOf(f) === Function.prototype // true

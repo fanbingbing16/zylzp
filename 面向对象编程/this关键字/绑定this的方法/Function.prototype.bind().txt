@@ -1,0 +1,130 @@
+bind()方法用于将函数体内的this绑定到某个对象，然后返回一个新函数。
+
+bind()还可以接受更多的参数，将这些参数绑定原函数的参数。
+
+var add = function (x, y) {
+  return x * this.m + y * this.n;
+}
+
+var obj = {
+  m: 2,
+  n: 2
+};
+
+var newAdd = add.bind(obj, 5);
+newAdd(5) // 20
+
+注意这里的使用和call是有区别的
+
+
+如果bind()方法的第一个参数是null或undefined，等于将this绑定到全局对象，函数运行时this指向顶层对象（浏览器为window）。
+
+
+bind()方法有一些使用注意点。
+
+（1）每一次返回一个新函数
+
+bind()方法每运行一次，就返回一个新函数，这会产生一些问题。比如，监听事件的时候，不能写成下面这样。
+
+element.addEventListener('click', o.m.bind(o));
+上面代码中，click事件绑定bind()方法生成的一个匿名函数。这样会导致无法取消绑定，所以下面的代码是无效的。
+
+element.removeEventListener('click', o.m.bind(o));
+正确的方法是写成下面这样：
+
+var listener = o.m.bind(o);
+element.addEventListener('click', listener);
+//  ...
+element.removeEventListener('click', listener);
+（2）结合回调函数使用
+
+回调函数是 JavaScript 最常用的模式之一，但是一个常见的错误是，将包含this的方法直接当作回调函数。解决方法就是使用bind()方法，将counter.inc()绑定counter。
+
+var counter = {
+  count: 0,
+  inc: function () {
+    'use strict';
+    this.count++;
+  }
+};
+
+function callIt(callback) {
+  callback();
+}
+
+callIt(counter.inc.bind(counter));
+counter.count // 1
+上面代码中，callIt()方法会调用回调函数。这时如果直接把counter.inc传入，调用时counter.inc()内部的this就会指向全局对象。使用bind()方法将counter.inc绑定counter以后，就不会有这个问题，this总是指向counter。
+
+还有一种情况比较隐蔽，就是某些数组方法可以接受一个函数当作参数。这些函数内部的this指向，很可能也会出错。
+
+var obj = {
+  name: '张三',
+  times: [1, 2, 3],
+  print: function () {
+    this.times.forEach(function (n) {
+      console.log(this.name);
+    });
+  }
+};
+
+obj.print()
+// 没有任何输出
+上面代码中，obj.print内部this.times的this是指向obj的，这个没有问题。但是，forEach()方法的回调函数内部的this.name却是指向全局对象，导致没有办法取到值。稍微改动一下，就可以看得更清楚。
+
+obj.print = function () {
+  this.times.forEach(function (n) {
+    console.log(this === window);
+  });
+};
+
+obj.print()
+// true
+// true
+// true
+解决这个问题，也是通过bind()方法绑定this。
+
+obj.print = function () {
+  this.times.forEach(function (n) {
+    console.log(this.name);
+  }.bind(this));
+};
+
+obj.print()
+// 张三
+// 张三
+// 张三
+（3）结合call()方法使用
+
+利用bind()方法，可以改写一些 JavaScript 原生方法的使用形式，以数组的slice()方法为例。
+
+[1, 2, 3].slice(0, 1) // [1]
+// 等同于
+Array.prototype.slice.call([1, 2, 3], 0, 1) // [1]
+上面的代码中，数组的slice方法从[1, 2, 3]里面，按照指定的开始位置和结束位置，切分出另一个数组。这样做的本质是在[1, 2, 3]上面调用Array.prototype.slice()方法，因此可以用call方法表达这个过程，得到同样的结果。
+
+call()方法实质上是调用Function.prototype.call()方法，因此上面的表达式可以用bind()方法改写。
+
+var slice = Function.prototype.call.bind(Array.prototype.slice);
+slice([1, 2, 3], 0, 1) // [1]
+上面代码的含义就是，将Array.prototype.slice变成Function.prototype.call方法所在的对象，调用时就变成了Array.prototype.slice.call。类似的写法还可以用于其他数组方法。
+
+var push = Function.prototype.call.bind(Array.prototype.push);
+var pop = Function.prototype.call.bind(Array.prototype.pop);
+
+var a = [1 ,2 ,3];
+push(a, 4)
+a // [1, 2, 3, 4]
+
+pop(a)
+a // [1, 2, 3]
+如果再进一步，将Function.prototype.call方法绑定到Function.prototype.bind对象，就意味着bind的调用形式也可以被改写。
+
+function f() {
+  console.log(this.v);
+}
+
+var o = { v: 123 };
+var bind = Function.prototype.call.bind(Function.prototype.bind);
+bind(f, o)() // 123
+上面代码的含义就是，将Function.prototype.bind方法绑定在Function.prototype.call上面，所以bind方法就可以直接使用，不需要在函数实例上使用。

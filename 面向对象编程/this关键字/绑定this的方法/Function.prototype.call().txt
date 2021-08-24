@@ -1,0 +1,29 @@
+函数实例的call方法，可以指定函数内部this的指向（即函数执行时所在的作用域），然后在所指定的作用域中，调用该函数。
+
+函数实例的call方法，可以指定函数内部this的指向（即函数执行时所在的作用域），然后在所指定的作用域中，调用该函数。
+
+call方法的参数，应该是一个对象。如果参数为空、null和undefined，则默认传入全局对象。
+
+如果call方法的参数是一个原始值，那么这个原始值会自动转成对应的包装对象，然后传入call方法。
+
+var f = function () {
+  return this;
+};
+
+f.call(5)
+// Number {[[PrimitiveValue]]: 5}
+
+call方法还可以接受多个参数。call的第一个参数就是this所要指向的那个对象，后面的参数则是函数调用时所需的参数。
+
+call方法的一个应用是调用对象的原生方法。
+var obj = {};
+obj.hasOwnProperty('toString') // false
+
+// 覆盖掉继承的 hasOwnProperty 方法
+obj.hasOwnProperty = function () {
+  return true;
+};
+obj.hasOwnProperty('toString') // true
+
+Object.prototype.hasOwnProperty.call(obj, 'toString') // false
+上面代码中，hasOwnProperty是obj对象继承的方法，如果这个方法一旦被覆盖，就不会得到正确结果。call方法可以解决这个问题，它将hasOwnProperty方法的原始定义放到obj对象上执行，这样无论obj上有没有同名方法，都不会影响结果。

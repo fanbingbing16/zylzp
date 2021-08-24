@@ -1,0 +1,1 @@
+全局环境使用this，它指的就是顶层对象window（浏览器是window）

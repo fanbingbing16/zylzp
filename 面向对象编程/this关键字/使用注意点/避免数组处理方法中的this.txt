@@ -1,0 +1,34 @@
+数组的map和foreach方法，允许提供一个函数作为参数。这个函数内部不应该使用this。
+
+解决这个问题的一种方法，就是前面提到的，使用中间变量固定this。
+
+var o = {
+  v: 'hello',
+  p: [ 'a1', 'a2' ],
+  f: function f() {
+    var that = this;
+    this.p.forEach(function (item) {
+      console.log(that.v+' '+item);
+    });
+  }
+}
+
+o.f()
+// hello a1
+// hello a2
+另一种方法是将this当作foreach方法的第二个参数，固定它的运行环境。
+
+var o = {
+  v: 'hello',
+  p: [ 'a1', 'a2' ],
+  f: function f() {
+    this.p.forEach(function (item) {
+      console.log(this.v + ' ' + item);
+    }, this);
+  }
+}
+
+o.f()
+// hello a1
+// hello a2
+

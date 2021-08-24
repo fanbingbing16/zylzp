@@ -1,0 +1,28 @@
+in运算符返回一个布尔值，表示一个对象是否具有某个属性。它不区分该属性是对象自身的属性，还是继承的属性。
+
+'length' in Date // true
+'toString' in Date // true
+in运算符常用于检查一个属性是否存在。
+
+获得对象的所有可遍历属性（不管是自身的还是继承的），可以使用for...in循环。
+
+var o1 = { p1: 123 };
+
+var o2 = Object.create(o1, {
+  p2: { value: "abc", enumerable: true }
+});
+
+for (p in o2) {
+  console.info(p);
+}
+// p2
+// p1
+
+
+为了在for...in循环中获得对象自身的属性，可以采用hasOwnProperty方法判断一下。
+
+for ( var name in object ) {
+  if ( object.hasOwnProperty(name) ) {
+    /* loop code */
+  }
+}

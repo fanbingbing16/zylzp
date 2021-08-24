@@ -1,0 +1,17 @@
+另一种做法是使用“立即执行函数”（Immediately-Invoked Function Expression，IIFE），将相关的属性和方法封装在一个函数作用域里面，可以达到不暴露私有成员的目的。
+
+var module1 = (function () {
+　var _count = 0;
+　var m1 = function () {
+　  //...
+　};
+　var m2 = function () {
+　　//...
+　};
+　return {
+　　m1 : m1,
+　　m2 : m2
+　};
+})();
+
+使用上面的写法，外部代码无法读取内部的_count变量。

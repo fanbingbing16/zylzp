@@ -1,0 +1,54 @@
+prototype对象有一个constructor属性，默认指向prototype对象所在的构造函数。
+
+function P() {}
+P.prototype.constructor === P // true
+
+由于constructor属性定义在prototype对象上面，意味着可以被所有实例对象继承。
+
+
+constructor属性的作用是，可以得知某个实例对象，到底是哪一个构造函数产生的。
+
+function F() {};
+var f = new F();
+
+f.constructor === F // true
+f.constructor === RegExp // false
+上面代码中，constructor属性确定了实例对象f的构造函数是F，而不是RegExp。
+
+
+另一方面，有了constructor属性，就可以从一个实例对象新建另一个实例。
+
+function Constr() {}
+var x = new Constr();
+
+var y = new x.constructor();
+y instanceof Constr // true
+
+这使得在实例方法中，调用自身的构造函数成为可能。
+
+
+constructor属性表示原型对象与构造函数之间的关联关系，如果修改了原型对象，一般会同时修改constructor属性，防止引用的时候出错。
+
+
+
+
+所以，修改原型对象时，一般要同时修改constructor属性的指向。
+
+// 坏的写法
+C.prototype = {
+  method1: function (...) { ... },
+  // ...
+};
+
+// 好的写法
+C.prototype = {
+  constructor: C,
+  method1: function (...) { ... },
+  // ...
+};
+
+// 更好的写法
+C.prototype.method1 = function (...) { ... };
+
+
+

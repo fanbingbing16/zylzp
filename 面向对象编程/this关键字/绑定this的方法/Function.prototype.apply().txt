@@ -1,0 +1,60 @@
+apply方法的作用与call方法类似，也是改变this指向，然后再调用该函数。唯一的区别就是，它接收一个数组作为函数执行时的参数，也就是说第二个参数是一个数组
+
+利用这一点，可以做一些有趣的应用。
+
+（1）找出数组最大元素
+
+JavaScript 不提供找出数组最大元素的函数。结合使用apply方法和Math.max方法，就可以返回数组的最大元素。
+
+var a = [10, 2, 4, 15, 9];
+Math.max.apply(null, a) // 15
+（2）将数组的空元素变为undefined
+
+通过apply方法，利用Array构造函数将数组的空元素变成undefined。
+
+Array.apply(null, ['a', ,'b'])
+// [ 'a', undefined, 'b' ]
+空元素与undefined的差别在于，数组的forEach方法会跳过空元素，但是不会跳过undefined。因此，遍历内部元素的时候，会得到不同的结果。
+
+var a = ['a', , 'b'];
+
+function print(i) {
+  console.log(i);
+}
+
+a.forEach(print)
+// a
+// b
+
+Array.apply(null, a).forEach(print)
+// a
+// undefined
+// b
+（3）转换类似数组的对象
+
+另外，利用数组对象的slice方法，可以将一个类似数组的对象（比如arguments对象）转为真正的数组。
+
+Array.prototype.slice.apply({0: 1, length: 1}) // [1]
+Array.prototype.slice.apply({0: 1}) // []
+Array.prototype.slice.apply({0: 1, length: 2}) // [1, undefined]
+Array.prototype.slice.apply({length: 1}) // [undefined]
+上面代码的apply方法的参数都是对象，但是返回结果都是数组，这就起到了将对象转成数组的目的。从上面代码可以看到，这个方法起作用的前提是，被处理的对象必须有length属性，以及相对应的数字键。
+
+（4）绑定回调函数的对象
+
+前面的按钮点击事件的例子，可以改写如下。
+
+var o = new Object();
+
+o.f = function () {
+  console.log(this === o);
+}
+
+var f = function (){
+  o.f.apply(o);
+  // 或者 o.f.call(o);
+};
+
+// jQuery 的写法
+$('#button').on('click', f);
+上面代码中，点击按钮以后，控制台将会显示true。由于apply()方法（或者call()方法）不仅绑定函数执行时所在的对象，还会立即执行函数，因此不得不把绑定语句写在一个函数体内。

@@ -1,0 +1,7 @@
+实例对象的isPrototypeOf方法，用来判断该对象是否为参数对象的原型。
+var o1 = {};
+var o2 = Object.create(o1);
+var o3 = Object.create(o2);
+
+o2.isPrototypeOf(o3) // true
+o1.isPrototypeOf(o3) // true

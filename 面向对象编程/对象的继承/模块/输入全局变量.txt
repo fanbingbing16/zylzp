@@ -1,0 +1,35 @@
+独立性是模块的重要特点，模块内部最好不与程序的其他部分直接交互。
+
+为了在模块内部调用全局变量，必须显式地将其他变量输入模块。
+
+var module1 = (function ($, YAHOO) {
+　//...
+})(jQuery, YAHOO);
+上面的module1模块需要使用 jQuery 库和 YUI 库，就把这两个库（其实是两个模块）当作参数输入module1。这样做除了保证模块的独立性，还使得模块之间的依赖关系变得明显。
+
+
+
+立即执行函数还可以起到命名空间的作用。
+
+(function($, window, document) {
+
+  function go(num) {
+  }
+
+  function handleEvents() {
+  }
+
+  function initialize() {
+  }
+
+  function dieCarouselDie() {
+  }
+
+  //attach to the global scope
+  window.finalCarousel = {
+    init : initialize,
+    destroy : dieCarouselDie
+  }
+
+})( jQuery, window, document );
+上面代码中，finalCarousel对象输出到全局，对外暴露init和destroy接口，内部方法go、handleEvents、initialize、dieCarouselDie都是外部无法调用的。

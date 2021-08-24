@@ -1,0 +1,14 @@
+Object.setPrototypeOf方法为参数对象设置原型，返回该参数对象。它接受两个参数，第一个是现有对象，第二个是原型对象。
+
+
+new命令可以使用Object.setPrototypeOf方法模拟。
+
+var F = function () {
+  this.foo = 'bar';
+};
+
+var f = new F();
+// 等同于
+var f = Object.setPrototypeOf({}, F.prototype);
+F.call(f);
+上面代码中，new命令新建实例对象，其实可以分成两步。第一步，将一个空对象的原型设为构造函数的prototype属性（上例是F.prototype）；第二步，将构造函数内部的this绑定这个空对象，然后执行构造函数，使得定义在this上面的方法和属性（上例是this.foo），都转移到这个空对象上。

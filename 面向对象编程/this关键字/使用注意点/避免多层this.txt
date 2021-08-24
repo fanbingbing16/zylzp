@@ -1,0 +1,21 @@
+由于this的指向是不确定的，所以切勿在函数中包含多层的this。
+
+一个解决方法是在第二层改用一个指向外层this的变量。
+
+var o = {
+  f1: function() {
+    console.log(this);
+    var that = this;
+    var f2 = function() {
+      console.log(that);
+    }();
+  }
+}
+
+o.f1()
+// Object
+// Object
+上面代码定义了变量that，固定指向外层的this，然后在内层使用that，就不会发生this指向的改变。
+
+JavaScript 提供了严格模式，也可以硬性避免这种问题。严格模式下，如果函数内部的this指向顶层对象，就会报错。
+

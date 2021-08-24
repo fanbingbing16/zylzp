@@ -1,0 +1,14 @@
+过构造函数为实例对象定义属性，虽然很方便，但是有一个缺点。同一个构造函数的多个实例之间，无法共享属性，从而造成对系统资源的浪费。
+
+function Cat(name, color) {
+  this.name = name;
+  this.color = color;
+  this.meow = function () {
+    console.log('喵喵');
+  };
+}
+
+var cat1 = new Cat('大毛', '白色');
+var cat2 = new Cat('二毛', '黑色');
+
+cat1.meow === cat2.meow
