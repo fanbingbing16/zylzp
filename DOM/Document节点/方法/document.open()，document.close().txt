@@ -1,0 +1,7 @@
+document.open方法清除当前文档所有内容，使得文档处于可写状态，供document.write方法写入内容。
+
+document.close方法用来关闭document.open()打开的文档。
+
+document.open();
+document.write('hello world');
+document.close();

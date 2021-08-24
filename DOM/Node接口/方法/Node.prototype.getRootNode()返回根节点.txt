@@ -1,0 +1,6 @@
+getRootNode()方法返回当前节点所在文档的根节点document，与ownerDocument属性的作用相同。
+
+该方法可用于document节点自身，这一点与document.ownerDocument不同。
+
+document.getRootNode() // document
+document.ownerDocument // null

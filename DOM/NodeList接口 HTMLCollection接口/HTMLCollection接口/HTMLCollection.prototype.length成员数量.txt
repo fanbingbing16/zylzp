@@ -1,0 +1,1 @@
+length属性返回HTMLCollection实例包含的成员数量。

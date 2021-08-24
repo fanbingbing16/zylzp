@@ -1,0 +1,12 @@
+appendChild()方法接受一个节点对象作为参数，将其作为最后一个子节点，插入当前节点。该方法的返回值就是插入文档的子节点。
+
+var p = document.createElement('p');
+document.body.appendChild(p);插入最后的位置
+
+如果参数节点是 DOM 已经存在的节点，appendChild()方法会将其从原来的位置，移动到新位置。
+
+var div = document.getElementById('myDiv');
+document.body.appendChild(div);
+
+如果appendChild()方法的参数是DocumentFragment节点，那么插入的是DocumentFragment的所有子节点，而不是DocumentFragment节点本身。返回值是一个空的DocumentFragment节点。
+

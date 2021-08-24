@@ -1,0 +1,37 @@
+function f1() {
+  var n = 999;
+  function f2() {
+    console.log(n);
+  }
+  return f2;
+}
+
+var result = f1();
+result(); // 999
+
+
+
+f2就是闭包，闭包可以读取函数内部的数据
+因为函数内部的数据只有在子函数可以读取，所以闭包也可以理解成”定义在一个函数内部的函数“
+
+
+它一个最大的特点就是”记住“诞生的环境，使变量始终保存在内存中
+如下：
+function createIncrementor(start) {
+  return function () {
+    return start++;
+  };
+}
+
+var inc = createIncrementor(5);
+
+inc() // 5
+inc() // 6
+inc() // 7
+
+闭包可以看作是函数作用域内的一个接口
+
+闭包的另一个用处，是封装对象的私有属性和私有方法。
+
+
+闭包占用内存挺大，所以闭包不能滥用，否则会造成网页的性能问题

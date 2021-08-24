@@ -1,0 +1,8 @@
+document.designMode属性控制当前文档是否可编辑。该属性只有两个值on和off，默认值为off。一旦设为on，用户就可以编辑整个文档的内容。
+
+下面代码打开iframe元素内部文档的designMode属性，就能将其变为一个所见即所得的编辑器。
+
+// HTML 代码如下
+// <iframe id="editor" src="about:blank"></iframe>
+var editor = document.getElementById('editor');
+editor.contentDocument.designMode = 'on';

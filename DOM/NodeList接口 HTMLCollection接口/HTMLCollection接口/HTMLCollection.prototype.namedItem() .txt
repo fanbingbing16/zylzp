@@ -1,0 +1,7 @@
+namedItem方法的参数是一个字符串，表示id属性或name属性的值，返回对应的元素节点。如果没有对应的节点，则返回null。
+
+// HTML 代码如下
+// <img id="pic" src="http://example.com/foo.jpg">
+
+var pic = document.getElementById('pic');
+document.images.namedItem('pic') === pic // true

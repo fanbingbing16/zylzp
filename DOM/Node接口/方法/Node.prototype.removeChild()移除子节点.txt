@@ -1,0 +1,8 @@
+removeChild方法接受一个子节点作为参数，用于从当前节点移除该子节点。返回值是移除的子节点。
+
+var divA = document.getElementById('A');
+divA.parentNode.removeChild(divA);
+
+被移除的节点依然存在于内存之中，但不再是 DOM 的一部分。所以，一个节点移除以后，依然可以使用它，比如插入到另一个节点下面。
+
+如果参数节点不是当前节点的子节点，removeChild方法将报错

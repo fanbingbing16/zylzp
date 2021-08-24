@@ -1,0 +1,14 @@
+document.createAttribute方法生成一个新的属性节点（Attr实例），并返回它。
+
+var attribute = document.createAttribute(name);
+document.createAttribute方法的参数name，是属性的名称。
+
+var node = document.getElementById('div1');
+
+var a = document.createAttribute('my_attrib');
+a.value = 'newVal';
+
+node.setAttributeNode(a);
+// 或者
+node.setAttribute('my_attrib', 'newVal');
+上面代码为div1节点，插入一个值为newVal的my_attrib属性。

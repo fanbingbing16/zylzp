@@ -1,0 +1,13 @@
+baseURI属性返回一个字符串，表示当前网页的绝对路径。浏览器根据这个属性，计算网页上的相对路径的 URL。该属性为只读。
+
+// 当前网页的网址为
+// http://www.example.com/index.html
+document.baseURI
+// "http://www.example.com/index.html"
+如果无法读到网页的 URL，baseURI属性返回null。
+
+
+该属性的值一般由当前网址的 URL（即window.location属性）决定，但是可以使用 HTML 的<base>标签，改变该属性的值。
+
+<base href="http://www.example.com/page.html">
+设置了以后，baseURI属性就返回<base>标签设置的值

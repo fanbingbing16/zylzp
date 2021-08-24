@@ -1,0 +1,18 @@
+document.adoptNode方法将某个节点及其子节点，从原来所在的文档或DocumentFragment里面移除，归属当前document对象，返回插入后的新节点。插入的节点对象的ownerDocument属性，会变成当前的document对象，而parentNode属性是null。
+
+var node = document.adoptNode(externalNode);
+document.appendChild(node);
+注意，document.adoptNode方法只是改变了节点的归属，并没有将这个节点插入新的文档树。所以，还要再用appendChild方法或insertBefore方法，将新节点插入当前文档树。
+
+document.importNode方法则是从原来所在的文档或DocumentFragment里面，拷贝某个节点及其子节点，让它们归属当前document对象。拷贝的节点对象的ownerDocument属性，会变成当前的document对象，而parentNode属性是null。
+
+var node = document.importNode(externalNode, deep);
+document.importNode方法的第一个参数是外部节点，第二个参数是一个布尔值，表示对外部节点是深拷贝还是浅拷贝，默认是浅拷贝（false）。虽然第二个参数是可选的，但是建议总是保留这个参数，并设为true。
+
+注意，document.importNode方法只是拷贝外部节点，这时该节点的父节点是null。下一步还必须将这个节点插入当前文档树。
+
+var iframe = document.getElementsByTagName('iframe')[0];
+var oldNode = iframe.contentWindow.document.getElementById('myNode');
+var newNode = document.importNode(oldNode, true);
+document.getElementById("container").appendChild(newNode);
+上面代码从iframe窗口，拷贝一个指定节点myNode，插入当前文档。

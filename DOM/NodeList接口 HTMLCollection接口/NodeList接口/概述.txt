@@ -1,0 +1,20 @@
+NodeList实例是一个类似数组的对象，它的成员是节点对象。通过以下方法可以得到NodeList实例。
+
+1.Node.childNodes
+2.document.querySelectorAll()等节点搜索方法
+
+
+NodeList实例很像数组，可以使用length属性和forEach方法。但是，它不是数组，不能使用pop或push之类数组特有的方法。
+
+如果NodeList实例要使用数组方法，可以将其转为真正的数组。
+
+var children = document.body.childNodes;
+var nodeArr = Array.prototype.slice.call(children);
+除了使用forEach方法遍历 NodeList 实例，还可以使用for循环。
+
+var children = document.body.childNodes;
+
+for (var i = 0; i < children.length; i++) {
+  var item = children[i];
+}
+注意，NodeList 实例可能是动态集合，也可能是静态集合。所谓动态集合就是一个活的集合，DOM 删除或新增一个相关节点，都会立刻反映在 NodeList 实例。目前，只有Node.childNodes返回的是一个动态集合，其他的 NodeList 都是静态集合。

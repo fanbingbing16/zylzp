@@ -1,0 +1,31 @@
+hasChildNodes方法返回一个布尔值，表示当前节点是否有子节点。
+
+var foo = document.getElementById('foo');
+
+if (foo.hasChildNodes()) {
+  foo.removeChild(foo.childNodes[0]);
+}
+
+注意，子节点包括所有类型的节点，并不仅仅是元素节点。哪怕节点只包含一个空格，hasChildNodes方法也会返回true。
+
+判断一个节点有没有子节点，有许多种方法，下面是其中的三种。
+
+1.node.hasChildNodes()
+2.node.firstChild !== null
+3.node.childNodes && node.childNodes.length > 0
+
+
+
+hasChildNodes方法结合firstChild属性和nextSibling属性，可以遍历当前节点的所有后代节点。
+
+function DOMComb(parent, callback) {
+  if (parent.hasChildNodes()) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      DOMComb(node, callback);
+    }
+  }
+  callback(parent);
+}
+
+// 用法
+DOMComb(document.body, console.log)

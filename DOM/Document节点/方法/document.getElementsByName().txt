@@ -1,0 +1,5 @@
+document.getElementsByName()方法用于选择拥有name属性的 HTML 元素（比如<form>、<radio>、<img>、<frame>、<embed>和<object>等），返回一个类似数组的的对象（NodeList实例），因为name属性相同的元素可能不止一个。
+
+// 表单为 <form name="x"></form>
+var forms = document.getElementsByName('x');
+forms[0].tagName // "FORM"

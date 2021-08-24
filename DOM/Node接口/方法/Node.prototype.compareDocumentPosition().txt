@@ -1,0 +1,22 @@
+compareDocumentPosition方法的用法，与contains方法完全一致，返回一个六个比特位的二进制值，表示参数节点与当前节点的关系。
+
+二进制值	十进制值	含义
+000000	0	两个节点相同
+000001	1	两个节点不在同一个文档（即有一个节点不在当前文档）
+000010	2	参数节点在当前节点的前面
+000100	4	参数节点在当前节点的后面
+001000	8	参数节点包含当前节点
+010000	16	当前节点包含参数节点
+100000	32	浏览器内部使用
+
+// HTML 代码如下
+// <div id="mydiv">
+//   <form><input id="test" /></form>
+// </div>
+
+var div = document.getElementById('mydiv');
+var input = document.getElementById('test');
+
+div.compareDocumentPosition(input) // 20
+input.compareDocumentPosition(div) // 10
+上面代码中，节点div包含节点input（二进制010000），而且节点input在节点div的后面（二进制000100），所以第一个compareDocumentPosition方法返回20（二进制010100，即010000 + 000100），第二个compareDocumentPosition方法返回10（二进制001010）。

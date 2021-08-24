@@ -1,0 +1,1 @@
+length属性返回 NodeList 实例包含的节点数量。

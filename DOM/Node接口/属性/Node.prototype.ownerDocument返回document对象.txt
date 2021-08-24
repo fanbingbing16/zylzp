@@ -1,0 +1,5 @@
+Node.ownerDocument属性返回当前节点所在的顶层文档对象，即document对象。
+
+var d = p.ownerDocument;
+d === document // true
+document对象本身的ownerDocument属性，返回null。
