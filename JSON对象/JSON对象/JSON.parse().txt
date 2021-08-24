@@ -1,0 +1,34 @@
+JSON.parse()方法用于将 JSON 字符串转换成对应的值。
+
+JSON.parse('{}') // {}
+JSON.parse('true') // true
+JSON.parse('"foo"') // "foo"
+JSON.parse('[1, 5, "false"]') // [1, 5, "false"]
+JSON.parse('null') // null
+
+var o = JSON.parse('{"name": "张三"}');
+o.name // 张三
+
+JSON.parse()方法用于将 JSON 字符串转换成对应的值。
+
+JSON.parse('{}') // {}
+JSON.parse('true') // true
+JSON.parse('"foo"') // "foo"
+JSON.parse('[1, 5, "false"]') // [1, 5, "false"]
+JSON.parse('null') // null
+
+var o = JSON.parse('{"name": "张三"}');
+o.name // 张三
+
+
+
+为了处理解析错误，可以将JSON.parse()方法放在try...catch代码块中。
+
+try {
+  JSON.parse("'String'");
+} catch(e) {
+  console.log('parsing error');
+}
+
+
+JSON.parse()方法可以接受一个处理函数，作为第二个参数，用法与JSON.stringify()方法类似。

@@ -1,0 +1,15 @@
+注意，false对应的包装对象实例，布尔运算结果也是true。
+
+if (new Boolean(false)) {
+  console.log('true');
+} // true
+
+if (new Boolean(false).valueOf()) {
+  console.log('true');
+} // 无输出
+
+if (Boolean(false)) {
+  console.log('true');
+} // 无输出
+因为new Boolean(false)把false转为一个对象，对象的布尔值为true   new Boolean(false).valueOf()会还原本身的值false
+Boolean(false)，false的布尔值为false

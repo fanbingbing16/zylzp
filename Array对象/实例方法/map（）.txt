@@ -1,0 +1,26 @@
+将数组的所有成员依次传入参数函数，然后把每一次的执行结果都组成一个新数组返回，原数组不发生改变
+
+var numbers = [1, 2, 3];
+
+numbers.map(function (n) {
+  return n + 1;
+});
+// [2, 3, 4]
+
+numbers
+// [1, 2, 3]
+
+map方法接受一个函数作为参数，该函数调用时，map（）方法向它传入三个参数：当前成员、当前位置和数组本身
+
+
+elem当前成员 index当前位置
+
+map方法可以接受第二个参数，用来绑定回调函数内部的this变量
+var arr = ['a', 'b', 'c'];
+
+[1, 2].map(function (e) {
+  return this[e];
+}, arr)
+// ['b', 'c']
+
+map方法会跳过数组空位，但是不会跳过undefined和null

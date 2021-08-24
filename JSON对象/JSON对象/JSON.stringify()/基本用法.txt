@@ -1,0 +1,27 @@
+JSON.stringify()方法用于将一个值转为 JSON 字符串。该字符串符合 JSON 格式，并且可以被JSON.parse()方法还原。
+
+JSON.stringify('abc') // "\"abc\""
+JSON.stringify(1) // "1"
+JSON.stringify(false) // "false"
+JSON.stringify([]) // "[]"
+JSON.stringify({}) // "{}"
+
+JSON.stringify([1, "false", false])
+// '[1,"false",false]'
+
+JSON.stringify({ name: "张三" })
+// '{"name":"张三"}'
+
+注意，对于原始类型的字符串，转换结果会带双引号。
+
+如果对象的属性是undefined、函数或 XML 对象，该属性会被JSON.stringify()过滤，直接忽略
+如果数组的成员是undefined、函数或 XML 对象，则这些值被转成null。
+正则对象会被转成空对象。
+
+
+JSON.stringify()方法会忽略对象的不可遍历的属性。
+
+
+
+
+

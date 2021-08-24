@@ -1,0 +1,6 @@
+Math.max方法返回参数之中最大的那个值，Math.min返回最小的那个值。如果参数为空, Math.min返回Infinity, Math.max返回-Infinity。
+
+Math.max(2, -1, 5) // 5
+Math.min(2, -1, 5) // -1
+Math.min() // Infinity
+Math.max() // -Infinity

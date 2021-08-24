@@ -1,0 +1,22 @@
+reduce()方法和reduceRight()方法依次处理数组的每个成员，最终累计为一个值。它们的差别是，reduce()是从左到右处理（从第一个成员到最后一个成员），reduceRight()则是从右到左（从最后一个成员到第一个成员），其他完全一样。
+reduce()方法和reduceRight()方法的第一个参数都是一个函数。该函数接受以下四个参数。
+
+1.累积变量。第一次执行时，默认为数组的第一个成员；以后每次执行时，都是上一轮的返回值。必写
+2.当前变量。第一次执行时，默认为数组的第二个成员；以后每次执行时，都是下一个成员       必写
+3.当前位置。一个整数，表示第二个参数（当前变量）的位置，默认为1。  可选
+4.原数组。    可选
+
+如果要对累积变量指定初值，可以把它放在reduce()方法和reduceRight()方法的第二个参数。
+建议总是加上第二个参数，这样是空数组的时候不会报错
+
+
+由于这两个方法会遍历数组，所以实际上可以用来做一些遍历相关的操作。比如，找出字符长度最长的数组成员。
+
+function findLongest(entries) {
+  return entries.reduce(function (longest, entry) {
+    return entry.length > longest.length ? entry : longest;
+  }, '');
+}
+
+findLongest(['aaa', 'bb', 'c']) // "aaa"
+

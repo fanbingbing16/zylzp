@@ -1,0 +1,15 @@
+以指定参数作为分隔符，将所有数组成员连接为一个字符串，没有参数默认是逗号分隔
+
+如果数组成员是undefined或null或空位，会被转为空字符串
+[undefined, null].join('#')
+// '#'
+
+['a',, 'b'].join('-')
+// 'a--b'
+下面是通过call将join、用于类似数组的对象
+Array.prototype.join.call('hello', '-')
+// "h-e-l-l-o"
+
+var obj = { 0: 'a', 1: 'b', length: 2 };
+Array.prototype.join.call(obj, '-')
+// 'a-b'

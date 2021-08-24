@@ -1,0 +1,6 @@
+方法返回对应时间的 ISO8601 写法。
+var d = new Date(2013, 0, 1);
+
+d.toISOString()
+// "2012-12-31T16:00:00.000Z"
+注意，toISOString方法返回的总是 UTC 时区的时间。

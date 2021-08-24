@@ -1,0 +1,61 @@
+Date.prototype.toLocaleString()：完整的本地时间。
+Date.prototype.toLocaleDateString()：本地日期（不含小时、分和秒）。
+Date.prototype.toLocaleTimeString()：本地时间（不含年月日）。
+下面是用法实例。
+
+var d = new Date(2013, 0, 1);
+
+d.toLocaleString()
+// 中文版浏览器为"2013年1月1日 上午12:00:00"
+// 英文版浏览器为"1/1/2013 12:00:00 AM"
+
+d.toLocaleDateString()
+// 中文版浏览器为"2013年1月1日"
+// 英文版浏览器为"1/1/2013"
+
+d.toLocaleTimeString()
+// 中文版浏览器为"上午12:00:00"
+// 英文版浏览器为"12:00:00 AM"
+
+这两个参数中，locales是一个指定所用语言的字符串，options是一个配置对象。下面是locales的例子，分别采用en-US和zh-CN语言设定。
+
+var d = new Date(2013, 0, 1);
+
+d.toLocaleString('en-US') // "1/1/2013, 12:00:00 AM"
+d.toLocaleString('zh-CN') // "2013/1/1 上午12:00:00"
+
+options配置对象有以下属性。
+
+dateStyle：可能的值为full、long、medium、short。
+timeStyle：可能的值为full、long、medium、short。
+month：可能的值为numeric、2-digit、long、short、narrow。
+year：可能的值为numeric、2-digit。
+weekday：可能的值为long、short、narrow。
+day、hour、minute、second：可能的值为numeric、2-digit。
+timeZone：可能的值为 IANA 的时区数据库。
+timeZooneName：可能的值为long、short。
+hour12：24小时周期还是12小时周期，可能的值为true、false。
+下面是用法实例。
+
+var d = new Date(2013, 0, 1);
+
+d.toLocaleDateString('en-US', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+})
+// "Tuesday, January 1, 2013"
+
+d.toLocaleDateString('en-US', {
+  day: "2-digit",
+  month: "long",
+  year: "2-digit"
+});
+// "January 01, 13"
+
+d.toLocaleTimeString('en-US', {
+  timeZone: 'UTC',
+  timeZoneName: 'short'
+})
+// "4:00:00 PM UTC"

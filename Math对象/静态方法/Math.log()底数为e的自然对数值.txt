@@ -1,0 +1,6 @@
+Math.log方法返回以e为底的自然对数值。
+
+如果要计算以10为底的对数，可以先用Math.log求出自然对数，然后除以Math.LN10；求以2为底的对数，可以除以Math.LN2。
+
+Math.log(100)/Math.LN10 // 2
+Math.log(8)/Math.LN2 // 3

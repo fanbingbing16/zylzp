@@ -1,0 +1,4 @@
+Math.abs方法返回参数值的绝对值。
+
+Math.abs(1) // 1
+Math.abs(-1) // 1

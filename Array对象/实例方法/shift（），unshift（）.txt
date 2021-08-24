@@ -1,0 +1,15 @@
+shift删除数组的第一个元素，并返回该元素
+var list = [1, 2, 3, 4];
+var item;
+
+while (item = list.shift()) {
+  console.log(item);
+}
+
+list // []
+
+上面使用shift遍历并清空了数组
+
+unshift在数组的开始添加一个或者多个元素，并返回添加新元素后的数组长度
+
+这两个也会改变原数组
