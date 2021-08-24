@@ -1,0 +1,13 @@
+返回字符串指定位置的 Unicode 码点（十进制表示），相当于String.fromCharCode()的逆操作。
+
+'abc'.charCodeAt(1) // 98
+
+如果没有任何参数，charCodeAt返回首字符的 Unicode 码点。
+
+'abc'.charCodeAt() // 97
+
+如果参数为负数，或大于等于字符串的长度，charCodeAt返回NaN。
+
+
+
+注意，charCodeAt方法返回的 Unicode 码点不会大于65536（0xFFFF），也就是说，只返回两个字节的字符的码点。如果遇到码点大于 65536 的字符（四个字节的字符），必须连续使用两次charCodeAt，不仅读入charCodeAt(i)，还要读入charCodeAt(i+1)，将两个值放在一起，才能得到准确的字符。

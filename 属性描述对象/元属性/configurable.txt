@@ -1,0 +1,5 @@
+返回一个布尔值，决定其属性描述对象的可配置性，即是否可修改，删除
+
+configurable为false时，属性描述对象里面的属性都不可修改了，包括自己本身
+
+不过writable为true的时候是可以被修改成false的，而且value属性较特殊，只要writable和configurable有一个为true，就允许改动value

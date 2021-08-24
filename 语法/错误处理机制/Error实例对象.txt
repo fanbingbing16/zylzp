@@ -1,0 +1,9 @@
+var err = new Error('出错了');
+err.message // "出错了"
+
+
+Error里面有message：错误提示信息
+name：错误名称（非标准属性）
+stack：错误的堆栈（非标准属性）
+
+name和stack不是标准的，所以并不会每种都可

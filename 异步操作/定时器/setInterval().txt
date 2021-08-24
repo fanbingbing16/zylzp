@@ -1,0 +1,27 @@
+setInterval函数的用法与setTimeout完全一致，区别仅仅在于setInterval指定某个任务每隔一段时间就执行一次，也就是无限次的定时执行。
+
+下面是一个通过setInterval方法实现网页动画的例子。
+
+var div = document.getElementById('someDiv');
+var opacity = 1;
+var fader = setInterval(function() {
+  opacity -= 0.1;
+  if (opacity >= 0) {
+    div.style.opacity = opacity;
+  } else {
+    clearInterval(fader);
+  }
+}, 100);
+上面代码每隔100毫秒，设置一次div元素的透明度，直至其完全透明为止。
+
+
+setInterval指定的是“开始执行”之间的间隔，并不考虑每次任务执行本身所消耗的时间。因此实际上，两次执行之间的间隔会小于指定的时间。比如，setInterval指定每 100ms 执行一次，每次执行需要 5ms，那么第一次执行结束后95毫秒，第二次执行就会开始。如果某次执行耗时特别长，比如需要105毫秒，那么它结束后，下一次执行就会立即开始。
+
+为了确保两次执行之间有固定的间隔，可以不用setInterval，而是每次执行结束后，使用setTimeout指定下一次执行的具体时间。
+
+var i = 1;
+var timer = setTimeout(function f() {
+  // ...
+  timer = setTimeout(f, 2000);
+}, 2000);
+上面代码可以确保，下一次执行总是在本次执行结束之后的2000毫秒开始。

@@ -1,0 +1,33 @@
+将任意类型的值转为数值
+// 数值：转换后还是原来的值
+Number(324) // 324
+
+// 字符串：如果可以被解析为数值，则转换为相应的数值
+Number('324') // 324
+
+// 字符串：如果不可以被解析为数值，返回 NaN
+Number('324abc') // NaN
+
+// 空字符串转为0
+Number('') // 0
+
+// 布尔值：true 转成 1，false 转成 0
+Number(true) // 1
+Number(false) // 0
+
+// undefined：转成 NaN
+Number(undefined) // NaN
+
+// null：转成0
+Number(null) // 0
+
+会自动过滤一个字符串前导和后缀的空格
+Number方法的参数是对象时，返回NaN,除非是只包含单个数值的数组
+
+
+
+
+规则：
+1.调用自身的valueOf方法。如果返回原始类型的值，则直接对该值使用Number函数，不再继续下面步骤
+2，如果valueOf方法返回的还是对象，则改为调用对象自身的tostring方法，如果返回原始类型的值，则使用Number，不再进行后续步骤
+3.如果tostring方法返回的是对象，就报错

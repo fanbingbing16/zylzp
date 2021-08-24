@@ -1,0 +1,10 @@
+setTimeout和setInterval函数，都返回一个整数值，表示计数器编号。将该整数传入clearTimeout和clearInterval函数，就可以取消对应的定时器。
+
+var id1 = setTimeout(f, 1000);
+var id2 = setInterval(f, 1000);
+
+clearTimeout(id1);
+
+clearInterval(id2);
+
+

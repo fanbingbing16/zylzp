@@ -1,0 +1,22 @@
+
+console输出各种信息到控制台，并且提供很多有用的辅助方法
+
+作用：
+1.调试工具，显示网页代码运行时的错误信息
+2.提供了一个命令行接口，用来与网页代码互动
+
+
+
+
+
+
+
+
+chrom浏览器开发者工具：
+Elements：查看网页的 HTML 源码和 CSS 代码。
+Resources：查看网页加载的各种资源文件（比如代码文件、字体文件 CSS 文件等），以及在硬盘上创建的各种内容（比如本地缓存、Cookie、Local Storage等）。
+Network：查看网页的 HTTP 通信情况。
+Sources：查看网页加载的脚本源码。
+Timeline：查看各种网页行为随时间变化的情况。
+Performance：查看网页的性能情况，比如 CPU 和内存消耗。
+Console：用来运行 JavaScript 命令。

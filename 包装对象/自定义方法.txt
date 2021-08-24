@@ -1,0 +1,16 @@
+除了原生的实例方法，包装对象还可以自定义方法和属性，供原始类型的值直接调用。
+
+比如，我们可以新增一个double方法，使得字符串和数字翻倍。
+
+String.prototype.double = function () {
+  return this.valueOf() + this.valueOf();
+};
+
+'abc'.double()
+// abcabc
+
+Number.prototype.double = function () {
+  return this.valueOf() + this.valueOf();
+};
+
+(123).double() // 246

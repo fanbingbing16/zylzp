@@ -1,0 +1,13 @@
+手动中断程序执行，抛出一个错误
+var x = -1;
+
+if (x <= 0) {
+  throw new Error('x 必须为正数');
+}
+// Uncaught Error: x 必须为正数
+
+
+它的参数可以是任何值
+
+
+遇到throw就中断，打印throw的信息

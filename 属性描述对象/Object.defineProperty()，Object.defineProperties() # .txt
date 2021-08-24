@@ -1,0 +1,27 @@
+允许通过属性描述对象，定义或修改一个属性，然后返回修改后的对象
+
+里面有三个参数
+object：属性所在的对象
+propertyName：字符串，表示属性名
+attributesObject：属性描述对象
+
+
+定义obj.p，使得他的writable和configurable都成了false
+var obj = Object.defineProperty({}, 'p', {
+  value: 123,
+  writable: false,
+  enumerable: true,
+  configurable: false
+});
+
+obj.p // 123
+
+obj.p = 246;
+obj.p // 123
+Object.defineProperties定义或修改多个属性的属性描述对象
+
+
+一旦定义了取值函数get或者存值函数set，就不能将writable属性设为true，或者同时定义value属性，否则会报错
+
+
+用着两个定义属性，都是第三个参数属性描述对象为空，那么默认writable、enumerable、configurable为false

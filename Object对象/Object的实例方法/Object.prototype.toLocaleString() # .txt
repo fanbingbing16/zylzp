@@ -1,0 +1,5 @@
+与toString返回结果相同
+
+主要作用是留出一个接口，用来返回某些地域特定的值
+
+Array Number Date对象自定义了toLocaleString方法，所以返回值和toString不一样

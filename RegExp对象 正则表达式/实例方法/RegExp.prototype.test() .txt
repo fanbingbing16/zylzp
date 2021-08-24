@@ -1,0 +1,11 @@
+正则实例对象的test方法返回一个布尔值，表示当前模式是否能匹配参数字符串。
+
+/cat/.test('cats and dogs') // true
+
+如果正则表达式带有g修饰符，则每一次test方法都从上一次结束的位置开始向后匹配。lastIndex指向上一次结束的位置，test方法会按照lastIndex所指的位置开始搜索，当全部都执行过一次之后，lastIndex会变成0
+
+lastIndex属性只对同一个正则表达式有效，所以下面这样写是错误的。
+
+var count = 0;
+while (/a/g.test('babaa')) count++;
+

@@ -1,0 +1,4 @@
+toString()方法返回对应的字符串形式。
+new Number(123).toString() // "123"
+new String('abc').toString() // "abc"
+new Boolean(true).toString() // "true"

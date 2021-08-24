@@ -1,0 +1,7 @@
+新建正则表达式的方法：
+1.var regex = /xyz/;
+2.var regex = new RegExp('xyz');
+可以有第二个参数，表示修饰符
+var regex = new RegExp('xyz', 'i');
+// 等价于
+var regex = /xyz/i;

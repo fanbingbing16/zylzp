@@ -1,0 +1,20 @@
+$_属性返回上一个表达式的值
+
+$0表示返回上一个表达式的值
+
+$1返回倒数第二个表达式的值
+
+以此类推
+
+$(selector)返回第一个匹配的元素，document.querySelector()
+如果$在网页中有其它定义，会被覆盖
+
+$$(selector)返回选中的 DOM 对象，等同于document.querySelectorAll
+
+
+$x(path)返回一个数组
+
+
+keys(object)返回键名
+
+values（object)返回键值

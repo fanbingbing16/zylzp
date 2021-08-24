@@ -1,0 +1,5 @@
+valueOf()方法返回包装对象实例对应的原始类型的值。
+
+new Number(123).valueOf()  // 123  
+new String('abc').valueOf() // "abc"
+new Boolean(true).valueOf() // true
